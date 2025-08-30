@@ -4,14 +4,282 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jéssica Faria - Portfólio Pessoal</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --cor-primaria: #6a11cb;
+            --cor-secundaria: #2575fc;
+            --cor-texto: #333;
+            --cor-fundo: #f9f9f9;
+            --cor-destaque: #ff6b6b;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: var(--cor-primaria);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Cabeçalho e Navegação */
+        header {
+            background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-left: 30px;
+        }
+        
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .menu a:hover {
+            color: var(--cor-destaque);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%236a11cb"/><path d="M0 0L100 100" stroke="%232575fc" stroke-width="2"/><path d="M100 0L0 100" stroke="%232575fc" stroke-width="2"/></svg>');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--cor-destaque);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: white;
+            color: var(--cor-destaque);
+            transform: translateY(-3px);
+        }
+        
+        /* Seções de Conteúdo */
+        .sobre-content, .formacao-content, .portfolio-content, .contato-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .sobre-content, .formacao-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Cards do Portfólio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .portfolio-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 10px;
+        }
+        
+        /* Formulário de Contato */
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--cor-destaque);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--cor-primaria);
+                padding: 20px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .menu li {
+                margin: 10px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                color: white;
+                cursor: pointer;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Cabeçalho com Menu de Navegação -->
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Jéssica Farias</div>
+                <div class="logo">Jéssica Faria</div>
                 <ul class="menu">
                     <li><a href="#sobre">Sobre Mim</a></li>
                     <li><a href="#formacao">Formação</a></li>
@@ -27,7 +295,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Jéssica Farias</h1>
+                <h1>Jéssica Faria</h1>
                 <p>Desenvolvedora em Formação & Entusiasta de Tecnologia</p>
                 <a href="#portfolio" class="btn">Ver Portfólio</a>
             </div>
@@ -39,7 +307,7 @@
         <div class="container">
             <div class="sobre-content">
                 <h2>Sobre Mim</h2>
-                <p>Oi, meu nome é Jéssica, eu tenho 21 anos. Eu amo viajar, conhecer novos lugares e viver novas experiências. Também gosto muito de me cuidar: faço academia e sigo uma dieta saudável, porque acredito que saúde e bem-estar são muito importantes.</p>
+                <p>Oi, meu nome é Jéssica, eu tenho 20 anos. Eu amo viajar, conhecer novos lugares e viver novas experiências. Também gosto muito de me cuidar: faço academia e sigo uma dieta saudável, porque acredito que saúde e bem-estar são muito importantes.</p>
                 <p>Desde cedo, me interessei pela área de tecnologia e hoje estou seguindo meu sonho de me tornar uma desenvolvedora. Adoro aprender coisas novas e enfrentar desafios que me fazem crescer tanto profissionalmente quanto pessoalmente.</p>
             </div>
         </div>
@@ -137,6 +405,58 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+        // Menu responsivo - alternância
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.menu').classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um item (em dispositivos móveis)
+        document.querySelectorAll('.menu a').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelector('.menu').classList.remove('active');
+            });
+        });
+        
+        // Validação do formulário
+        document.getElementById('form-contato').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const mensagem = document.getElementById('mensagem').value;
+            
+            if (nome && email && mensagem) {
+                alert('Obrigada pela mensagem, ' + nome + '! Retornarei em breve.');
+                this.reset();
+            } else {
+                alert('Por favor, preencha todos os campos.');
+            }
+        });
+        
+        // Adicionar classe ativa ao menu conforme a rolagem
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.menu a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
